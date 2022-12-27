@@ -16,6 +16,6 @@ public class PlayerFollower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = car.transform.position + new Vector3(1, 3.9f, -7);
+        transform.position = car.transform.position + new Vector3(0, 3.9f, -7);
     }
 }

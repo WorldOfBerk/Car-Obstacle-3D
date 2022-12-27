@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,6 +11,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float turnSpeed;
     [SerializeField] private float horizontalInput;
     [SerializeField] private float verticalInput;
+    [SerializeField] private GameObject winScreen;
+    [SerializeField] private GameObject loseScreen;
+    
     
     // Start is called before the first frame update
     void Start()
@@ -26,7 +32,23 @@ public class PlayerController : MonoBehaviour
 
         if (transform.position.y < -5)
         {
-            Debug.Log("Ded");
+            loseScreen.SetActive(true);
         }
+        else if (transform.position.z > 78)
+        {
+            winScreen.SetActive(true);
+        }
+    }
+
+    public void PlayAgain()
+    {
+        //Sets the position to zero
+        transform.position = Vector3.zero;
+        //Sets the rotation to zero
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        
+        //Hides winScreen and loseScreen *- at least one of them showed up at the end game -*
+        winScreen.SetActive(false);
+        loseScreen.SetActive(false);
     }
 }

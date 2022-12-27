@@ -9,10 +9,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float horizontalInput;
     [SerializeField] private float verticalInput;
     
-    
-    
-    
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +22,11 @@ public class PlayerController : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
 
         transform.Translate(Vector3.forward * speed * Time.deltaTime * verticalInput);
-        //transform.Translate(Vector3.back * turnSpeed * Time.deltaTime * horizontalInput);
-        
         transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime * verticalInput * horizontalInput);
+
+        if (transform.position.y < -5)
+        {
+            Debug.Log("Ded");
+        }
     }
 }
